@@ -1,0 +1,28 @@
+version: "3"
+services:
+  db:
+    image: mongo:6.0.20
+    restart: unless-stopped
+    container_name: db_mongo_application
+    command: ["mongod", "--port", "27019"]
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=easyPassword
+
+      - MONGO_INITDB_DATABASE=db_application
+      - MONGO_INITDB_USERNAME=user
+      - MONGO_INITDB_PASSWORD=12345
+    ports:
+      - 27019:27019
+    networks:
+      - red_applications
+    volumes:
+      - ./db/scripts.js:/docker-entrypoint-initdb.d/scripts.js:ro
+      - db_application:/data/db
+
+networks:
+  red_applications:
+    name: red_applications
+    driver: bridge
+volumes:
+  db_application:
