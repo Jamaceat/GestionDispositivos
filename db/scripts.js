@@ -10,13 +10,13 @@ cll_user = "cll_user";
 cll_device_type = "cll_device_type";
 
 // creacion de base de datos
-db_config_server = db.getSiblingDB(dbNameDev);
+db_config_server = db.getSiblingDB(db_name);
 
 db_gestion = db.getSiblingDB(db_name);
 db_gestion.createUser({
 	user: "user_back",
 	pwd: "12345",
-	roles: [{ role: "readWrite", db: dbNameDev }],
+	roles: [{ role: "readWrite", db: db_name }],
 });
 
 //crear coleccion Roles
