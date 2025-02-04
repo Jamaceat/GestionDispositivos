@@ -18,6 +18,7 @@ services:
       - red_applications
     volumes:
       - ./db/scripts.js:/docker-entrypoint-initdb.d/scripts.js:ro
+      - ./db/data.js:/docker-entrypoint-initdb.d/data.js:ro
       - db_application:/data/db
 
 networks:
