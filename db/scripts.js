@@ -29,5 +29,22 @@ db_gestion.createCollection(cll_device);
 db_gestion.createCollection(cll_order);
 db_gestion.createCollection(cll_order_detail);
 
-cll_role = db_gestion.getCollection(cll_role);
-cll_role.insertMany(role_sample);
+cll_role_document = db_gestion.getCollection(cll_role);
+arreglo = cll_role_document.insertMany(role_sample);
+id_admin = cll_role_document.findOne({ role: "ROLE_ADMIN" }, { _id: 1 });
+
+console.log(id_admin + " aaaaaaaaaaaaaa janer");
+console.log(JSON.stringify(arreglo) + " aaaaaaaaaaaaaa janer");
+
+admin_example = {
+	first_name: "Jesus",
+	last_name: "Ospino",
+	email: "edgarmipapa@gmail.com",
+	password: "1234",
+	roles: [id_admin],
+	orders: [],
+};
+
+cll_user_document = db_gestion.getCollection(cll_user);
+
+cll_user_document.insertOne(admin_example);
