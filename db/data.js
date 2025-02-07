@@ -1,3 +1,5 @@
+// Roles por defecto
+
 role_sample = [
 	{
 		role: "ROLE_USER",

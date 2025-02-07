@@ -32,6 +32,7 @@ db_gestion.createCollection(cll_order_detail);
 cll_role_document = db_gestion.getCollection(cll_role);
 cll_role_document.insertMany(role_sample);
 
+// Insercion de ids de roles en usuarios
 id_admin = cll_role_document.findOne({ role: "ROLE_ADMIN" }, { _id: 1 });
 id_sell = cll_role_document.findOne({ role: "ROLE_SELLER" }, { _id: 1 });
 id_user = cll_role_document.findOne({ role: "ROLE_USER" }, { _id: 1 });
