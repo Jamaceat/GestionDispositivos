@@ -30,14 +30,14 @@ db_gestion.createCollection(cll_order);
 db_gestion.createCollection(cll_order_detail);
 
 cll_role_document = db_gestion.getCollection(cll_role);
-arreglo = cll_role_document.insertMany(role_sample);
-id_admin = cll_role_document.findOne({ role: "ROLE_ADMIN" }, { _id: 1 });
+cll_role_document.insertMany(role_sample);
 
-console.log(id_admin + " aaaaaaaaaaaaaa janer");
-console.log(JSON.stringify(arreglo) + " aaaaaaaaaaaaaa janer");
+id_admin = cll_role_document.findOne({ role: "ROLE_ADMIN" }, { _id: 1 });
+id_sell = cll_role_document.findOne({ role: "ROLE_SELLER" }, { _id: 1 });
+id_user = cll_role_document.findOne({ role: "ROLE_USER" }, { _id: 1 });
 
 admin_example = {
-	first_name: "Jesus",
+	first_name: "Jesus admin",
 	last_name: "Ospino",
 	email: "edgarmipapa@gmail.com",
 	password: "1234",
@@ -45,6 +45,29 @@ admin_example = {
 	orders: [],
 };
 
-cll_user_document = db_gestion.getCollection(cll_user);
+sell_example = {
+	first_name: "Jesus vendedor",
+	last_name: "Ospino",
+	email: "edgarmipapavendedor@gmail.com",
+	password: "1234",
+	roles: [id_sell],
+	orders: [],
+};
 
+user_example = {
+	first_name: "Jesus usuario",
+	last_name: "Ospino",
+	email: "edgarmipapauser@gmail.com",
+	password: "1234",
+	roles: [id_user],
+	orders: [],
+};
+
+cll_user_document = db_gestion.getCollection(cll_user);
 cll_user_document.insertOne(admin_example);
+
+cll_user_document = db_gestion.getCollection(cll_user);
+cll_user_document.insertOne(sell_example);
+
+cll_user_document = db_gestion.getCollection(cll_user);
+cll_user_document.insertOne(user_example);
