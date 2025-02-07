@@ -64,11 +64,7 @@ user_example = {
 	orders: [],
 };
 
-cll_user_document = db_gestion.getCollection(cll_user);
-cll_user_document.insertOne(admin_example);
+//
 
 cll_user_document = db_gestion.getCollection(cll_user);
-cll_user_document.insertOne(sell_example);
-
-cll_user_document = db_gestion.getCollection(cll_user);
-cll_user_document.insertOne(user_example);
+cll_user_document.insertMany([admin_example, sell_example, user_example]);
