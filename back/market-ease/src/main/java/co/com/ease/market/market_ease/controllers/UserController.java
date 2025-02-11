@@ -5,12 +5,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.Paths;
+
 @RestController
 public class UserController {
 
 
     @GetMapping("/example")
     public ResponseEntity<String> showBasicEndpoint(){
+
+        
 
         return new ResponseEntity<>("Correcto",HttpStatus.OK);
     }
