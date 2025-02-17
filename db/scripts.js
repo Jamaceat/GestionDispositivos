@@ -42,6 +42,7 @@ admin_example = {
 	last_name: "Ospino",
 	email: "edgarmipapa@gmail.com",
 	password: "1234",
+	document: "1234567890",
 	roles: [id_admin],
 	orders: [],
 };
@@ -51,6 +52,7 @@ sell_example = {
 	last_name: "Ospino",
 	email: "edgarmipapavendedor@gmail.com",
 	password: "1234",
+	document: "9087654321",
 	roles: [id_sell],
 	orders: [],
 };
@@ -60,6 +62,7 @@ user_example = {
 	last_name: "Ospino",
 	email: "edgarmipapauser@gmail.com",
 	password: "1234",
+	document: "1111111111",
 	roles: [id_user],
 	orders: [],
 };
