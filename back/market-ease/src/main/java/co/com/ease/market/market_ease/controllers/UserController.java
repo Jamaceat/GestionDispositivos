@@ -2,6 +2,8 @@ package co.com.ease.market.market_ease.controllers;
 
 import co.com.ease.market.market_ease.dto.GenericResponse;
 import co.com.ease.market.market_ease.dto.Response;
+import co.com.ease.market.market_ease.dto.user.UserResponse;
+import co.com.ease.market.market_ease.entities.RoleEntity;
 import co.com.ease.market.market_ease.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +29,11 @@ public class UserController {
 
 //       UserEntity userEntity = userEntityDao.findById(document).orElseThrow(() -> new Exception("no encontrado documento"));
 List<UserEntity> userEntity = userEntityDao.findAll();
-        return new ResponseEntity<>(new Response<UserEntity>("Usuario traido exitosamente",userEntity.get(0)), HttpStatus.OK);
+        UserResponse userResponse=new UserResponse();
+        userResponse.setName(userEntity.get(0).getFirstName()+" "+userEntity.get(0).getLastName());
+        userResponse.setRoles(userEntity.get(0).getRoles().stream().map(RoleEntity::getRole).toList());
+
+        return new ResponseEntity<>(new Response<>("Usuario traido exitosamente",userEntity), HttpStatus.OK);
     }
 
 }
