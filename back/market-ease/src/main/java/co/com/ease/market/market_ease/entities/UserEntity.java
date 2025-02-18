@@ -3,6 +3,7 @@ package co.com.ease.market.market_ease.entities;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -17,7 +18,10 @@ public class UserEntity {
 
     
     @Id
+    private String id;
+
     @Field("document")
+    @Indexed(unique = true)
     private String document;
 
     @Field("first_name")

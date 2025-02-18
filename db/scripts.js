@@ -37,6 +37,10 @@ id_admin = cll_role_document.findOne({ role: "ROLE_ADMIN" }, {});
 id_sell = cll_role_document.findOne({ role: "ROLE_SELLER" }, {});
 id_user = cll_role_document.findOne({ role: "ROLE_USER" }, {});
 
+cll_user_document = db_gestion.getCollection(cll_user);
+
+cll_user_document.createIndex({ document: 1 }, { unique: true });
+
 admin_example = {
 	first_name: "Jesus admin",
 	last_name: "Ospino",
@@ -69,5 +73,4 @@ user_example = {
 
 //
 
-cll_user_document = db_gestion.getCollection(cll_user);
 cll_user_document.insertMany([admin_example, sell_example, user_example]);

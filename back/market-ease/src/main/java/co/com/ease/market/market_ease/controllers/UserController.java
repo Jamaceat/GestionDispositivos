@@ -27,11 +27,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<GenericResponse> showBasicEndpoint(@PathVariable("document") String document) throws Exception {
 
-//       UserEntity userEntity = userEntityDao.findById(document).orElseThrow(() -> new Exception("no encontrado documento"));
-List<UserEntity> userEntity = userEntityDao.findAll();
-        UserResponse userResponse=new UserResponse();
-        userResponse.setName(userEntity.get(0).getFirstName()+" "+userEntity.get(0).getLastName());
-        userResponse.setRoles(userEntity.get(0).getRoles().stream().map(RoleEntity::getRole).toList());
+   UserEntity userEntity = userEntityDao.findByDocument(document).orElseThrow(() -> new Exception("no encontrado documento"));
 
         return new ResponseEntity<>(new Response<>("Usuario traido exitosamente",userEntity), HttpStatus.OK);
     }
