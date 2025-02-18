@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface UserEntityDao extends MongoRepository<UserEntity,String> {
 
     Optional<UserEntity> findByDocument(String document);
+
+    Optional<UserEntity> findByEmail(String email);
     
 }
