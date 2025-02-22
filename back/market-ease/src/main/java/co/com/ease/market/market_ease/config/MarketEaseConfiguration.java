@@ -18,9 +18,9 @@ public class MarketEaseConfiguration {
         http
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
+                                .requestMatchers("/user/register").permitAll()
                                 .requestMatchers("/product").hasRole("ADMIN")
                                 .anyRequest().authenticated())
-                .formLogin(withDefaults())
                 .httpBasic(withDefaults())
                 .cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable);

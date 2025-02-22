@@ -19,7 +19,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @RestController
-@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, headers = "Accept=application/json;charset=UTF-8")
+@RequestMapping(value = "/user",produces = MediaType.APPLICATION_JSON_VALUE, headers = "Accept=application/json;charset=UTF-8")
 @AllArgsConstructor
 public class UserController {
 
@@ -34,11 +34,11 @@ public class UserController {
 
     }
 
-    @PostMapping(value = "")
+    @PostMapping(value = "/register")
     public ResponseEntity<GenericResponse> registerUser(@RequestBody UserRegistrationDto userRegistrationDto) {
+        UserEntity userEntity= userService.registerUser(userRegistrationDto);
 
-
-        return null;
+        return new ResponseEntity<>(new Response<>("Creado exitosamente",userEntity),HttpStatus.CREATED);
 
     }
 
