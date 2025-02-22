@@ -1,6 +1,7 @@
 package co.com.ease.market.market_ease.config.authentication;
 
 import co.com.ease.market.market_ease.config.MarketEaseUserDetailService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,12 +13,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class MarketEaseUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
+
     MarketEaseUserDetailService marketEaseUserDetailService;
 
-    @Autowired
     PasswordEncoder passwordEncoder;
 
     @Override

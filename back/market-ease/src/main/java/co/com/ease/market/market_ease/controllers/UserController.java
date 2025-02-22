@@ -1,7 +1,9 @@
 package co.com.ease.market.market_ease.controllers;
 
+import co.com.ease.market.market_ease.constants.ApplicationConstants;
 import co.com.ease.market.market_ease.dto.GenericResponse;
 import co.com.ease.market.market_ease.dto.Response;
+import co.com.ease.market.market_ease.dto.user.UserLoginDto;
 import co.com.ease.market.market_ease.dto.user.UserRegistrationDto;
 import co.com.ease.market.market_ease.dto.user.UserResponse;
 import co.com.ease.market.market_ease.entities.RoleEntity;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import co.com.ease.market.market_ease.dao.UserEntityDao;
@@ -39,6 +42,16 @@ public class UserController {
         UserEntity userEntity= userService.registerUser(userRegistrationDto);
 
         return new ResponseEntity<>(new Response<>("Creado exitosamente",userEntity),HttpStatus.CREATED);
+
+    }
+
+
+    @PostMapping(value = "/login")
+    public ResponseEntity<GenericResponse> loginUser(@RequestBody UserLoginDto userLoginDto) {
+        String jwt= userService.loginUserAuthentication(userLoginDto);
+        return ResponseEntity.status(HttpStatus.OK)
+                .header(ApplicationConstants.JWT_HEADER,jwt)
+                .body(new Response<>("Authentication successfull","headers loaded"));
 
     }
 
