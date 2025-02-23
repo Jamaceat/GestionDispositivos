@@ -5,17 +5,24 @@
         <hr>
         <form class="form" autocomplete="off"  [formGroup]="formRegister" (ngSubmit)="onSubmit()">
             <div class="container-input">
-                <label for="first_name">Nombres</label>
-                <input type="text" id="first_name" name="first_name" formControlName="first_name">
-                <p class="validation-form" *ngIf="formRegister.get('first_name')?.invalid && formRegister.get('first_name')?.touched">
-                    {{ getErrorMessage('first_name') }}
+                <label for="firstName">Nombres</label>
+                <input type="text" id="firstName" name="firstName" formControlName="firstName">
+                <p class="validation-form" *ngIf="formRegister.get('firstName')?.invalid && formRegister.get('firstName')?.touched">
+                    {{ getErrorMessage('firstName') }}
                 </p>
             </div>
             <div class="container-input">
-                <label for="last_name">Apellidos</label>
-                <input type="text" id="last_name" name="last_name" formControlName="password">
-                <p class="validation-form" *ngIf="formRegister.get('last_name')?.invalid && formRegister.get('last_name')?.touched">
-                    {{ getErrorMessage('last_name') }}
+                <label for="lastName">Apellidos</label>
+                <input type="text" id="lastName" name="lastName" formControlName="lastName">
+                <p class="validation-form" *ngIf="formRegister.get('lastName')?.invalid && formRegister.get('lastName')?.touched">
+                    {{ getErrorMessage('lastName') }}
+                </p>
+            </div>
+            <div class="container-input">
+                <label for="document">Documento</label>
+                <input type="text" id="document" name="document" formControlName="document">
+                <p class="validation-form" *ngIf="formRegister.get('document')?.invalid && formRegister.get('document')?.touched">
+                    {{ getErrorMessage('document') }}
                 </p>
             </div>
             <div class="container-input">
