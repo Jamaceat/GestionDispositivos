@@ -13,5 +13,5 @@ const moduleFederationConfig = withModuleFederationPlugin({
 
 });
 
-moduleFederationConfig.output.publicPath = "http://localhost:4200";
+moduleFederationConfig.output.publicPath = "http://localhost:4200/";
 module.exports = moduleFederationConfig
