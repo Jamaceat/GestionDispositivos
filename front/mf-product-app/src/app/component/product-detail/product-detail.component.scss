@@ -1,0 +1,60 @@
+$clr-gray100: #f9fbff;
+$clr-gray150: #f4f6fb;
+$clr-gray300: #e1e5ee;
+$clr-gray400: #767b91;
+$clr-gray500: #4f546c;
+$clr-gray600: #2a324b;
+$clr-gray700: #161d34;
+$btn-color: #4f38f7;
+$validation-form-color: rgb(228, 51, 51);
+
+.container-product-detail {
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: $clr-gray100;
+
+
+    .container-information {
+        background-color: white;
+        border: solid 1px $clr-gray300;
+        width: 37.5rem;
+        height: 40rem;
+        box-shadow: 0 5px 10px $clr-gray300;
+        padding: 40px;
+        border-radius: 0.313rem;
+
+        .product-add-title {
+            width: 100%;
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: $clr-gray700;
+        }
+        
+    }
+
+    .container-button-back {
+        display: flex;
+        justify-content: end;
+
+        .button-back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $btn-color;
+            border: none;
+            cursor: pointer;
+            height: 40px;
+            width: 100px;
+            border-radius: 5px;
+            color: $clr-gray150;        
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-decoration: none;
+        }
+
+    }
+
+}

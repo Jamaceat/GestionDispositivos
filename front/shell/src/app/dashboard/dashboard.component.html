@@ -1,0 +1,26 @@
+<div class="container-app">
+  <header class="header">
+    <div class="container-logo">
+      <p class="logo">Logo Aplication</p>
+    </div>
+    <nav class="container-nav">
+      <ul class="container-items-ul">
+        <li class="item">
+          <a class="label-navbar" routerLink="/dashboard/product" routerLinkActive="active">Productos</a>
+        </li>
+        <li class="item">
+          <a class="label-navbar" routerLink="/dashboard/cart" routerLinkActive="active">Carrito</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container-mf-apps">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<app-modal-error
+  *ngIf="modalService.isOpen$ | async"
+  [message]="(modalService.message$ | async) || 'Ha ocurrido un error.'"
+  (closeModal)="modalService.closeModal()"
+></app-modal-error>

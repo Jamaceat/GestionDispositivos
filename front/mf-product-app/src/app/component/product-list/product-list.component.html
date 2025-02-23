@@ -1,0 +1,37 @@
+<div class="container-product-list" [ngStyle]="{'height':entorno.style.height}">
+    <div>
+        <a class="btn-operation-add" [routerLink]="entorno.routes.productAdd">Agregar Producto</a>
+        @if (products.length > 0) {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Stock</th>
+                        <th>Estatus</th>
+                        <th>Precio</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (product of products; track $index) {
+                        <tr>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.type }}</td>
+                            <td>{{ product.stock }}</td>
+                            <td>
+                                <p class="status" [ngClass]="{'status-paid': isStock(product.stock), 'status-unpaid': !isStock(product.stock) }">{{ validateStatusProduct(product.stock) }}</p>
+                            </td>
+                            <td class="amount">${{ product.price }}</td>
+                            <td class="container-btn-operation">
+                                <a class="btn-operation btn-operation-edit" [routerLink]="[entorno.routes.productDetail.replace(':id',product.id)]">editar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        } @else () {
+            <p class="products-empty">No existen productos...</p>
+        }
+    </div>
+</div>

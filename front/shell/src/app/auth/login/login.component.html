@@ -1,0 +1,28 @@
+<div class="container-login">
+    <div class="container-information-login">
+        <p class="login-title">Iniciar sesión</p> 
+        &nbsp;
+        <hr>
+        <form class="form" autocomplete="off"  [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+            <div class="container-input">
+                <label for="Email">Correo</label>
+                <input type="text" id="Email" name="Email" formControlName="email">
+                <p class="validation-form" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
+                    {{ getErrorMessage('email') }}
+                </p>
+            </div>
+            <div class="container-input">
+                <label for="password">Contraseña</label>
+                <input type="text" id="password" name="password" formControlName="password">
+                <p class="validation-form" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
+                    {{ getErrorMessage('password') }}
+                </p>
+            </div>
+            <button type="submit" class="button">Iniciar Sesión</button>
+        </form>
+        <div class="redirect-register">
+            <p>¿No tienes aun una cuenta?</p>
+            <a routerLink="/register"v>Registrate aqui</a>
+        </div>
+    </div>
+</div>
