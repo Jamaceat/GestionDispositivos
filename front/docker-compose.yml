@@ -1,0 +1,32 @@
+services:
+  shell:
+    container_name: host-container
+    build: ./shell
+    ports:
+      - "4200:4200"
+    networks:
+      - mf-networks
+    depends_on:
+      - mf-product-app
+      - mf-cart-app
+
+  mf-product-app:
+    container_name: mf-product-app
+    build: ./mf-product-app
+    ports:
+      - "4201:4201"
+    networks:
+      - mf-networks
+
+  mf-cart-app:
+    container_name: mf-cart-app
+    build: ./mf-cart-app
+    ports:
+      - "4202:4202"
+    networks:
+      - mf-networks
+
+networks:
+  mf-networks:
+    name: mf-networks
+    driver: bridge

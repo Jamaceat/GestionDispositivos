@@ -1,0 +1,11 @@
+<div class="container-product-detail" [ngStyle]="{'height':entorno.style.height}">
+    <div class="container-information">
+        <div class="container-button-back">
+            <a class="button-back" [routerLink]="entorno.routes.product">Regresar</a>
+        </div>
+        <p class="product-add-title">Editar producto {{ productItem.name }}</p>
+        <div>
+            <app-form [dataForm]="productItem" [labelButton]="'Editar Producto'"/>
+        </div>
+    </div>
+</div>
