@@ -46,7 +46,7 @@ public class JWTTokenGeneratorFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getServletPath().contains("/user/login");
+        return !request.getServletPath().contains("/user/login");
     }
 
 
