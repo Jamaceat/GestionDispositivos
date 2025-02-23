@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
-import { IUserLogin, IUserLoginResponse } from '../../utils/user-login.interface';
+import { IUserLogin, IUserLoginResponse, IUserRegister } from '../../utils/user-login.interface';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -27,10 +27,21 @@ export class AuthService {
     return this.httpClient.post('http://localhost:8082/user/login', user, { observe: 'response' });
   }
 
-  public register(user: any): Observable<any>{
-    return this.httpClient.post('',user);
+  /**
+   * @author J. Jose Blanco
+   * @description Metodo utilizado para registrar usuario en el sistema, por defecto se registra como user.
+   * @param user 
+   * @version 1.0
+  */
+  public register(user: IUserRegister): Observable<IUserRegister> {
+    return this.httpClient.post<IUserRegister>('http://localhost:8082/user/register',user);
   }
 
+  /**
+   * @author J. Jose Blanco
+   * @description Cerrar la sesion del usuario
+   * @version 1.0
+  */
   public logOut() {
     this.tokenService.clearToken();
     this.router.navigate(['/login']);
