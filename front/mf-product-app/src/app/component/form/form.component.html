@@ -1,0 +1,31 @@
+<form class="form" autocomplete="off" [formGroup]="formProduct" (ngSubmit)="onSubmit()">
+    <div class="container-input">
+        <label for="Nombre">Nombre</label>
+        <input type="text" id="Nombre" name="Nombre" formControlName="name">
+        <p class="validation-form" *ngIf="formProduct.get('name')?.invalid && formProduct.get('name')?.touched">
+            {{ getErrorMessage('name') }}
+        </p>
+    </div>
+    <div class="container-input">
+        <label for="Tipo">Tipo</label>
+        <input type="text" id="Tipo" name="Tipo" formControlName="type">
+        <p class="validation-form" *ngIf="formProduct.get('type')?.invalid && formProduct.get('type')?.touched">
+            {{ getErrorMessage('type') }}
+        </p>
+    </div>
+    <div class="container-input">
+        <label for="Stock">Stock</label>
+        <input type="text" id="Stock" name="Stock" formControlName="stock">
+        <p class="validation-form" *ngIf="formProduct.get('stock')?.invalid && formProduct.get('stock')?.touched">
+            {{ getErrorMessage('stock') }}
+        </p>
+    </div>
+    <div class="container-input">
+        <label for="Precio">Precio</label>
+        <input type="text" id="Precio" name="Precio" formControlName="price">
+        <p class="validation-form" *ngIf="formProduct.get('price')?.invalid && formProduct.get('price')?.touched">
+            {{ getErrorMessage('price') }}
+        </p>
+    </div>
+    <button type="submit" class="button">{{ labelButton() }}</button>
+</form>
