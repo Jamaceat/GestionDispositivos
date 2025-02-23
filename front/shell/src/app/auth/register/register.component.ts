@@ -1,8 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { validationMessages } from '../../utils/validation-custom-forms';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { IUserRegister } from '../../utils/user-login.interface';
+import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -10,18 +13,28 @@ import { RouterLink } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
-  private readonly formBuilder = inject(FormBuilder);
+export class RegisterComponent implements OnDestroy{
+  private  authSuscription!: Subscription;
+
   formRegister!: FormGroup;
+  
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   constructor() {
     this.initializeForm();
   }
 
+  ngOnDestroy(): void {
+    this.authSuscription.unsubscribe();
+  }
+
   initializeForm() {
     this.formRegister = this.formBuilder.group({
-      first_name: ['', Validators.required],
-      last_name:  ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName:  ['', Validators.required],
+      document: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.minLength(8), Validators.required]],
     });
@@ -29,9 +42,18 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.formRegister.valid) {
-      const login = this.formRegister.value;
+      let userRegister = this.formRegister.value as IUserRegister;
 
-      console.log(login);
+      userRegister = {
+        ...userRegister,
+        roles: ['ROLE_USER']
+      }
+
+      this.authSuscription = this.authService.register(userRegister).subscribe({
+        complete: () => {
+          this.router.navigate(['/login']);
+        }
+      })
 
     } else {
       console.error('Formulario inválido');

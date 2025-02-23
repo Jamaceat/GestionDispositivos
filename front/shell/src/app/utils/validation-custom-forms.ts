@@ -1,9 +1,12 @@
 export const validationMessages: any = {
-  first_name: {
+  firstName: {
     required: 'El nombre es requerido.',
   },
-  last_name: {
+  lastName: {
     required: 'El apellido es requerido.',
+  },
+  document: {
+    required: 'El documento es requerido.',
   },
   email: {
     required: 'El correo es requerido.',
