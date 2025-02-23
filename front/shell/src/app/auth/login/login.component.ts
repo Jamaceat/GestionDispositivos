@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { validationMessages } from '../../utils/validation-custom-forms';
 import {
   FormBuilder,
@@ -10,6 +10,8 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { IUserLogin } from '../../utils/user-login.interface';
+import { TokenService } from '../services/token.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +19,21 @@ import { IUserLogin } from '../../utils/user-login.interface';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+  private authSuscription!: Subscription;
   formLogin!: FormGroup;
   
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly tokenServide = inject(TokenService);
   private readonly router = inject(Router);
 
   constructor() {
     this.initializeForm();
+  }
+
+  ngOnDestroy(): void {
+    this.authSuscription.unsubscribe();
   }
 
   initializeForm() {
@@ -38,10 +46,10 @@ export class LoginComponent {
   onSubmit() {
     if (this.formLogin.valid) {
       const userLogin = this.formLogin.value as IUserLogin;
-      this.authService.login(userLogin).subscribe({
+      this.authSuscription = this.authService.login(userLogin).subscribe({
         next: (res) => {
-          sessionStorage.setItem("tokenUser", res.headers.get("Authorization")!)
-          this.router.navigate(['/dashboard/product']);
+          this.tokenServide.setToken(res.headers.get("Authorization")!);
+          this.router.navigate(['/dashboard']);
         }
       });
     } else {
