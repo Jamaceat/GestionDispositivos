@@ -39,6 +39,18 @@
                     {{ getErrorMessage('password') }}
                 </p>
             </div>
+            <div class="container-input">
+                <label for="listUser">Tipo usuario</label>
+                <select name="optionsUser" id="optionsUser" formControlName="role">
+                    <option value="">Seleccione una opción.</option>
+                    @for (rol of rols; track rol.id) {
+                        <option [value]="rol.id">{{rol.name}}</option>
+                    }
+                </select>
+                <p class="validation-form" *ngIf="formRegister.get('role')?.invalid && formRegister.get('role')?.touched">
+                    {{ getErrorMessage('role') }}
+                </p>
+            </div>
             <button type="submit" class="button">Registrarse</button>
         </form>
         <div class="redirect-register">

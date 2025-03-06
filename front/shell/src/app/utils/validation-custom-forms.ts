@@ -15,5 +15,8 @@ export const validationMessages: any = {
   password: {
     required: 'La contraseña es requerida.',
     minlength: 'La contraseña debe tener minimo 8 caracteres',
+  },
+  role: {
+    required: 'El rol es requerido.',
   }
 };

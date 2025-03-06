@@ -22,6 +22,17 @@ export class RegisterComponent implements OnDestroy{
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
+  public rols = [
+    {
+      id: 'ROLE_USER',
+      name: 'Usuario',
+    },
+    {
+      id: 'ROLE_SELLER',
+      name: 'Vendedor',
+    }
+  ]
+
   constructor() {
     this.initializeForm();
   }
@@ -37,24 +48,18 @@ export class RegisterComponent implements OnDestroy{
       document: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.minLength(8), Validators.required]],
+      role: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
     if (this.formRegister.valid) {
       let userRegister = this.formRegister.value as IUserRegister;
-
-      userRegister = {
-        ...userRegister,
-        roles: ['ROLE_USER']
-      }
-
       this.authSuscription = this.authService.register(userRegister).subscribe({
         complete: () => {
           this.router.navigate(['/login']);
         }
       })
-
     } else {
       console.error('Formulario inválido');
       this.formRegister.markAllAsTouched();
