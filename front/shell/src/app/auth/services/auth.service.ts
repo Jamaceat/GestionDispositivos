@@ -1,8 +1,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
-import { IUserLogin, IUserLoginResponse, IUserRegister } from '../../utils/user-login.interface';
+import { Observable } from 'rxjs';
+import { IUserLogin, IUserRegister } from '../../model';
 import { TokenService } from './token.service';
 
 @Injectable({

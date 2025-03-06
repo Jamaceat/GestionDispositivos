@@ -1,17 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnDestroy } from '@angular/core';
-import { validationMessages } from '../../utils/validation-custom-forms';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { IUserLogin } from '../../utils/user-login.interface';
+import { IUserLogin } from '../../model/user-login.model';
 import { TokenService } from '../services/token.service';
 import { Subscription } from 'rxjs';
+import { validationMessages } from 'src/app/model';
 
 @Component({
   selector: 'app-login',

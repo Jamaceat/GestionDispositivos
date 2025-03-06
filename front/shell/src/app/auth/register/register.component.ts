@@ -1,11 +1,10 @@
 import { Component, inject, OnDestroy } from '@angular/core';
-import { validationMessages } from '../../utils/validation-custom-forms';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { IUserRegister } from '../../utils/user-login.interface';
-import { AuthService } from '../services/auth.service';
+import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { IUserRegister, validationMessages } from 'src/app/model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -72,7 +71,7 @@ export class RegisterComponent implements OnDestroy{
     if (control?.errors) {
       for (const errorKey in control.errors) {
         if (control.errors.hasOwnProperty(errorKey)) {
-          return validationMessages[controlName][errorKey];
+          return validationMessages[controlName][errorKey] as string;
         }
       }
     }

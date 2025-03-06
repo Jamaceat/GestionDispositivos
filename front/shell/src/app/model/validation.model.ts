@@ -18,5 +18,5 @@ export const validationMessages: any = {
   },
   role: {
     required: 'El rol es requerido.',
-  }
+  },
 };
